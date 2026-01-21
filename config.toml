@@ -143,7 +143,7 @@ customJS = ['js/encrypt.js']
 [[Params.sponsors]]
   name="Hellhound Engraving"
   url="/"
-  logo="/img/Logos2026/Hellhound.png"
+  logo="/img/Logos2026/hellhound.png"
   tier="Custom"
 
 [Permalinks]
