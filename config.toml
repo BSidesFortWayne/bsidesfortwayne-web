@@ -116,6 +116,12 @@ customJS = ['js/encrypt.js']
   tier="Silver"
 
 [[Params.sponsors]]
+  name="NineStar Connect"
+  url="https://www.ninestarconnect.com/"
+  logo="https://www.ninestarconnect.com/wp-content/uploads/2020/04/logo.svg"
+  tier="Silver"
+
+[[Params.sponsors]]
   name="winonaIT"
   url="https://winonait.com/"
   logo="https://winonait.com/wp-content/themes/mywp/assets/images/logo.png"
@@ -132,6 +138,18 @@ customJS = ['js/encrypt.js']
   name="LinfordCo"
   url="https://linfordco.com/"
   logo="/img/Logos2026/LinfordCov2.png"
+  tier="Custom"
+
+[[Params.sponsors]]
+  name="Gigtel"
+  url="https://gigtel.com/"
+  logo="https://gigtel.com/_nuxt/GigTel.B8al-PU8.png"
+  tier="Custom"
+
+[[Params.sponsors]]
+  name="Hellhound Engraving"
+  url="/"
+  logo="/img/Logos2026/hellhound.png"
   tier="Custom"
 
 [Permalinks]
