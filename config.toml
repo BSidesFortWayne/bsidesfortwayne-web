@@ -134,6 +134,18 @@ customJS = ['js/encrypt.js']
   logo="/img/Logos2026/LinfordCov2.png"
   tier="Custom"
 
+[[Params.sponsors]]
+  name="Gigtel"
+  url="https://gigtel.com/"
+  logo="https://gigtel.com/_nuxt/GigTel.B8al-PU8.png"
+  tier="Custom"
+
+[[Params.sponsors]]
+  name="Hellhound Engraving"
+  url="/"
+  logo="/img/Logos2026/Hellhound.png"
+  tier="Custom"
+
 [Permalinks]
   posts = "posts/:year/:month/:contentbasename"
 
