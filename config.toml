@@ -116,6 +116,12 @@ customJS = ['js/encrypt.js']
   tier="Silver"
 
 [[Params.sponsors]]
+  name="NineStar Connect"
+  url="https://www.ninestarconnect.com/"
+  logo="https://www.ninestarconnect.com/wp-content/uploads/2020/04/logo.svg"
+  tier="Silver"
+
+[[Params.sponsors]]
   name="winonaIT"
   url="https://winonait.com/"
   logo="https://winonait.com/wp-content/themes/mywp/assets/images/logo.png"
