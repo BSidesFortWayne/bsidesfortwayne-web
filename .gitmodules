@@ -1,6 +1,0 @@
-#[submodule "themes/mainroad"]
-#	path = themes/mainroad
-#	url = https://github.com/vimux/mainroad
-[submodule "themes/hugo-theme-hello-friend-ng"]
-	path = themes/hugo-theme-hello-friend-ng
-	url = https://github.com/rhazdon/hugo-theme-hello-friend-ng

@@ -1,0 +1,24 @@
+{
+	"name": "my-astro-app",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro build && wrangler dev",
+		"astro": "astro",
+		"deploy": "astro build && wrangler deploy",
+		"cf-typegen": "wrangler types"
+	},
+	"dependencies": {
+		"@astrojs/cloudflare": "^12.6.5",
+		"astro": "^5.16.14",
+		"crypto-js": "^4.2.0",
+		"rehype-external-links": "^3.0.0"
+	},
+	"devDependencies": {
+		"@types/crypto-js": "^4.2.2",
+		"@types/node": "^25.0.10",
+		"wrangler": "^4.60.0"
+	}
+}

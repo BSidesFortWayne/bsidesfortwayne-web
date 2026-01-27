@@ -1,0 +1,136 @@
+---
+import SponsorCard from './SponsorCard.astro';
+
+interface Sponsor {
+    name: string;
+    logo: string;
+    url: string;
+    tier: 'platinum' | 'gold' | 'silver' | 'bronze' | 'custom';
+}
+
+const sponsors: Sponsor[] = [
+    {
+        name: 'PFW',
+        logo: 'https://www.pfw.edu/application/themes/pfw-web-templates-1.5/assets/img/purdue-fw-logo.png',
+        url: 'https://www.pfw.edu/',
+        tier: 'platinum',
+    },
+    {
+        name: 'winonaIT',
+        logo: 'https://winonait.com/wp-content/themes/mywp/assets/images/logo.png',
+        url: 'https://winonait.com/',
+        tier: 'gold',
+    },
+    {
+        name: 'Lucid Services Group',
+        logo: 'https://media.licdn.com/dms/image/v2/C510BAQEdXduyNO9EIw/company-logo_200_200/company-logo_200_200/0/1631377262921?e=2147483647&v=beta&t=zTRNjzDPMfD56n1uznfm_jaG0IhotjcQw0xhqlMWcaw',
+        url: 'https://www.lucidservicesgroup.com/',
+        tier: 'gold',
+    },
+    {
+        name: 'guidepoint',
+        logo: 'https://www.guidepointsecurity.com/wp-content/uploads/2024/03/GPS_Horizontal_White_Text_Reg_Mark_RGB.svg',
+        url: 'https://www.guidepointsecurity.com/',
+        tier: 'silver',
+    },
+    {
+        name: 'armis',
+        logo: '/src/assets/img/logos/sponsors/2026/armis.svg',
+        url: 'https://www.armis.com/',
+        tier: 'silver',
+    },
+    {
+        name: 'NineStar Connect',
+        logo: '/src/assets/img/logos/sponsors/2026/ninestar.svg',
+        url: 'https://www.ninestarconnect.com/',
+        tier: 'silver',
+    },
+    {
+        name: 'LinfordCo',
+        logo: '/src/assets/img/logos/sponsors/2026/LinfordCov2.png',
+        url: 'https://linfordco.com/',
+        tier: 'custom',
+    },
+    {
+        name: 'Gigtel',
+        logo: 'https://gigtel.com/_nuxt/GigTel.B8al-PU8.png',
+        url: 'https://gigtel.com/',
+        tier: 'custom',
+    },
+    {
+        name: 'Hellhound Engraving',
+        logo: '/src/assets/img/logos/sponsors/2026/hellhound.png',
+        url: '/',
+        tier: 'custom',
+    },
+];
+
+const sponsorsByTier = sponsors.reduce(
+    (acc, sponsor) => {
+        if (!acc[sponsor.tier]) acc[sponsor.tier] = [];
+        acc[sponsor.tier].push(sponsor);
+        return acc;
+    },
+    {} as Record<string, Sponsor[]>
+);
+
+---
+
+<section class="Sponsors">
+    <h2 style="text-align:center;">Our Sponsors</h2>
+    
+    {Object.entries(sponsorsByTier).map(([tier, tierSponsors]) => (
+        <div class="tier" data-tier={tier}>
+            <h3 >{tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>
+            <div class="sponsors-grid">
+                {tierSponsors.map((sponsor) => (
+                    <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="sponsor-card">
+                        <img src={sponsor.logo} alt={sponsor.name} />
+                    </a>
+                ))}
+            </div>
+        </div>
+    ))}
+</section>
+
+<style>
+    .sponsors {
+        padding: 2rem;
+    }
+
+    .tier {
+        margin-bottom: 3rem;
+    }
+
+    .tier h3 {
+        text-transform: capitalize;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .sponsors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+    }
+
+    .sponsor-card {
+        text-decoration: none;
+        text-align: center;
+        transition: transform 0.2s;
+    }
+
+    .sponsor-card:hover {
+        transform: scale(1.05);
+    }
+
+    .sponsor-card img {
+        max-width: 50%;
+        height: auto;
+        margin-bottom: 0.5rem;
+    }
+
+    .sponsor-card p {
+        color: var(--text-color);
+    }
+</style>

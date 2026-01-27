@@ -1,0 +1,51 @@
+---
+import '../styles/header.css';
+---
+
+<header class="header">
+	<nav class="navbar">
+		<div class="container">
+			<div class="navbar-content">
+				<div class="logo">
+					<a href="/">
+						<span class="logo-text">BSFW></span>
+					</a>
+				</div>
+				
+				<button class="menu-toggle" id="menuToggle">
+					<span class="hamburger"></span>
+				</button>
+
+				<ul class="nav-menu" id="navMenu">
+					<li><a href="/schedule">Schedule</a></li>
+					<li><a href="/about">About</a></li>
+					<li><a href="https://bsidesfortwayne.org/sponsorship" target="_blank">Sponsorships<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-left: 4px; vertical-align: text-bottom;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a></li>
+					<li><a href="https://bsidesfortwayne.org/CFP" target="_blank">CFP<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-left: 4px; vertical-align: text-bottom;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a></li>
+					<li><a href="https://bsidesfortwayne.org/tickets" target="_blank">Tickets<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-left: 4px; vertical-align: text-bottom;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a></li>
+					<li><a href="https://ctf.bsidesfortwayne.org" target="_blank">CTF<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-left: 4px; vertical-align: text-bottom;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<script>
+	const menuToggle = document.getElementById('menuToggle');
+	const navMenu = document.getElementById('navMenu');
+
+	if (menuToggle && navMenu) {
+		menuToggle.addEventListener('click', () => {
+			navMenu.classList.toggle('active');
+			menuToggle.classList.toggle('active');
+		});
+
+		// Close menu when a link is clicked
+		const navLinks = navMenu.querySelectorAll('a');
+		navLinks.forEach(link => {
+			link.addEventListener('click', () => {
+				navMenu.classList.remove('active');
+				menuToggle.classList.remove('active');
+			});
+		});
+	}
+</script>

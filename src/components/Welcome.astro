@@ -1,0 +1,106 @@
+---
+import '../styles/welcome.css';
+import Image from 'astro/components/Image.astro';
+
+import bsideslogo from '../assets/img/logo.png';
+---
+
+<section class="welcome" id="welcome">
+	<div class="container-md">
+		<div class="welcome-content">
+			<div class="welcome-logo">
+			<Image src={bsideslogo} alt="BSides Fort Wayne Logo" class="responsive-img" layout="constrained" inferSize={true}/>
+			<style>
+				.responsive-img {
+					max-width: 100%;
+					height: auto;
+				}
+				</style>	
+			</div>
+			<div class="welcome-message">
+				<div class="message-card">
+					<h2>2026</h2>
+					<p>
+						We are preparing for BSides Fort Wayne 2026!
+					</p>
+					<p class="highlight">
+						📅 Saturday, June 6th, 2026
+						<br>
+						<span id="countdown"></span>
+						<script>
+							const countdownDate = new Date("June 6, 2026 09:00:00").getTime();
+							const countdownElement = document.getElementById("countdown")!;
+
+							const updateCountdown = () => {
+								const now = new Date().getTime();
+								const distance = countdownDate - now;
+
+								const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+								const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+								const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+								const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+								countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+								if (distance < 0) {
+									clearInterval(interval);
+									countdownElement.innerHTML = "Event has started!";
+								}
+							};
+
+							const interval = setInterval(updateCountdown, 1000);
+						</script>
+					</p>
+					<p>
+						Pencil in the date on your calendar and stay tuned for more details!
+					</p>
+				</div>
+			</div>
+
+			<div class="welcome-cta">
+				<div class="cta-group">
+					<a href="https://www.linkedin.com/company/bsidesfortwayne" target="_blank" class="btn btn-primary">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+						</svg>
+						Follow on LinkedIn
+					</a>
+					<a href="https://discord.gg/tM4eZFFzjg" target="_blank" class="btn btn-primary">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M20.317 4.3671C18.7979 3.60795 17.151 3.12073 15.4360 2.94987C15.2275 3.32987 14.9935 3.86323 14.8543 4.26005C13.0338 3.93975 11.2282 3.93975 9.43625 4.26005C9.29706 3.85638 9.04531 3.32987 8.83484 2.94987C7.11751 3.12073 5.40765 3.60795 3.88834 4.3671C0.54846 8.55886 -0.31685 12.6026 0.0991471 16.5829C2.23878 18.1041 4.3876 18.8026 6.51047 19.2832C6.95407 18.5547 7.35052 17.7803 7.66831 16.9783C6.94926 16.7336 6.25892 16.4249 5.59653 16.0605C5.81115 15.8967 6.02477 15.7242 6.2282 15.5415C9.86588 17.1751 13.9995 17.1751 17.5362 15.5415C17.7406 15.7242 17.9542 15.8967 18.1688 16.0605C17.5064 16.4249 16.8161 16.7336 16.097 16.9783C16.4148 17.7803 16.8113 18.5547 17.2549 19.2832C19.3765 18.8026 21.5253 18.1041 23.6549 16.5829C24.1348 12.1637 23.0953 8.63865 20.317 4.3671ZM8.02185 14.1046C6.8918 14.1046 5.9771 13.1118 5.9771 11.8754C5.9771 10.6389 6.8788 9.64607 8.02185 9.64607C9.16491 9.64607 10.0796 10.6389 10.0796 11.8754C10.0796 13.1118 9.16491 14.1046 8.02185 14.1046ZM15.9981 14.1046C14.868 14.1046 13.9533 13.1118 13.9533 11.8754C13.9533 10.6389 14.8601 9.64607 15.9981 9.64607C17.1412 9.64607 18.0559 10.6389 18.0559 11.8754C18.0559 13.1118 17.1412 14.1046 15.9981 14.1046Z"/>
+						</svg>
+						Join Discord
+					</a>
+				</div>
+			</div>
+
+			<div class="welcome-info">
+				<div class="info-grid">
+					<div class="info-card">
+						<h3>Sponsorship</h3>
+						<p>Interested in sponsoring BSides Fort Wayne?</p>
+						<a href="mailto:sponsorship@bsidesfortwayne.org" class="link-arrow">
+							Get in Touch →
+						</a>
+					</div>
+					<div class="info-card">
+						<h3>About</h3>
+						<p>Learn more about our conference and community.</p>
+						<a href="/about" class="link-arrow">
+							Learn More →
+						</a>
+					</div>
+					<!--
+					<div class="info-card">
+						<h3>Schedule</h3>
+						<p>Check out the conference schedule and speakers.</p>
+						<a href="/schedule" class="link-arrow">
+							View Schedule →
+						</a>
+					</div>
+					--->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

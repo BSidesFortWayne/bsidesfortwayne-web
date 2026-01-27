@@ -1,0 +1,68 @@
+---
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+import Sponsors from '../components/Sponsors.astro';
+
+---
+
+<Layout title="BSides Fort Wayne 2026">
+	<div class="content">
+		<main>
+			<Welcome />
+		</main>
+		<aside class="sponsors-column">
+			<div id="sponsors" class="sponsors-content">
+				<Sponsors />
+			</div>
+		</aside>
+	</div>
+
+	<style>
+		.content {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 2rem;
+		}
+		main {
+			flex: 1 1 100%;
+			min-width: 0;
+		}
+		.sponsors-column {
+			flex: 1 1 100%;
+			min-width: 0;
+		}
+		.sponsors-content {
+			display: block;
+		}
+
+		@media (min-width: 1024px) {
+			.content {
+				flex-wrap: nowrap;
+			}
+			main {
+				flex: 3;
+			}
+			.sponsors-column {
+				flex: 1;
+				margin-left: 20px;
+			}
+		}
+
+		@media (max-width: 768px) {
+			.content {
+				gap: 1rem;
+			}
+		}
+	</style>
+</Layout>
+
+<script>
+    import CryptoJS from 'crypto-js'
+    var key = CryptoJS.enc.Utf8.parse("Look For Me on social media");
+    var iv = CryptoJS.enc.Utf8.parse("c1dfc13d545bd741");
+    //var encrypted = CryptoJS.AES.encrypt(Message, key, { iv: iv });
+    //var decrypted = CryptoJS.AES.decrypt(encrypted, key, { iv: iv });
+    console.log("Encrypted Flags loaded");
+    console.log("Free Ticket: e808cbc5e0ca3690e026f2c4b4d644af9a2179f75bfd6038626d37563e75d2f4");
+    console.log("CTF Flag: 5f80172b36b163318210d8223dbc4d8432006e4934a445e0451118b51fea3c3d");  
+</script>
