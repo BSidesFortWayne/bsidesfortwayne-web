@@ -4,19 +4,10 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "my-astro-app",
-	"main": "./dist/_worker.js/index.js",
+	"name": "bsidesfortwayne-web",
 	"compatibility_date": "2025-09-27",
-	"compatibility_flags": [
-		"nodejs_compat",
-		"global_fetch_strictly_public"
-	],
 	"assets": {
-		"binding": "ASSETS",
 		"directory": "./dist"
-	},
-	"observability": {
-		"enabled": true
 	}
 	/**
 	 * Smart Placement
