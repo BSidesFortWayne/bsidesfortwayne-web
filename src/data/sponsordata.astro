@@ -1,0 +1,85 @@
+---
+
+export interface Sponsor {
+    name: string;
+    logo: string;
+    url: string;
+    tier: 'platinum' | 'gold' | 'silver' | 'bronze' | 'custom';
+}
+
+export const sponsors: Sponsor[] = [
+    {
+        name: 'PFW',
+        logo: 'https://www.pfw.edu/application/themes/pfw-web-templates-1.5/assets/img/purdue-fw-logo.png',
+        url: 'https://www.pfw.edu/',
+        tier: 'platinum',
+    },
+    {
+        name: 'winonaIT',
+        logo: 'https://winonait.com/wp-content/themes/mywp/assets/images/logo.png',
+        url: 'https://winonait.com/',
+        tier: 'gold',
+    },
+    {
+        name: 'Lucid Services Group',
+        logo: 'https://media.licdn.com/dms/image/v2/C510BAQEdXduyNO9EIw/company-logo_200_200/company-logo_200_200/0/1631377262921?e=2147483647&v=beta&t=zTRNjzDPMfD56n1uznfm_jaG0IhotjcQw0xhqlMWcaw',
+        url: 'https://www.lucidservicesgroup.com/',
+        tier: 'gold',
+    },
+    {
+        name: 'guidepoint',
+        logo: 'https://www.guidepointsecurity.com/wp-content/uploads/2024/03/GPS_Horizontal_White_Text_Reg_Mark_RGB.svg',
+        url: 'https://www.guidepointsecurity.com/',
+        tier: 'silver',
+    },
+    {
+        name: 'armis',
+        logo: '/logos/sponsors/2026/armis.svg',
+        url: 'https://www.armis.com/',
+        tier: 'silver',
+    },
+    {
+        name: 'NineStar Connect',
+        logo: '/logos/sponsors/2026/ninestar.svg',
+        url: 'https://www.ninestarconnect.com/',
+        tier: 'silver',
+    },
+    {
+        name: 'LinfordCo',
+        logo: '/logos/sponsors/2026/LinfordCov2.png',
+        url: 'https://linfordco.com/',
+        tier: 'custom',
+    },
+    {
+        name: 'Gigtel',
+        logo: 'https://gigtel.com/_nuxt/GigTel.B8al-PU8.png',
+        url: 'https://gigtel.com/',
+        tier: 'custom',
+    },
+    {
+        name: 'Hellhound Engraving',
+        logo: '/logos/sponsors/2026/hellhound.png',
+        url: '/',
+        tier: 'custom',
+    },
+    {
+        name: 'Ark Technology Consulting',
+        logo: 'https://arktci.com/wp-content/uploads/2023/06/ark-logo.png',
+        url: 'https://arktci.com/',
+        tier: 'silver',
+    },
+        {
+        name: 'Preferred IT Group',
+        logo: 'https://preferreditgroup.com/wp-content/uploads/2024/04/message.png',
+        url: 'https://preferreditgroup.com/',
+        tier: 'custom',
+    },
+    {
+        name: 'Check Point Software Technologies Ltd.',
+        logo: '/logos/sponsors/2026/Check-Point-2025-logo-white.svg',
+        url: 'https://www.checkpoint.com/',
+        tier: 'custom',
+    }
+
+];
+---
