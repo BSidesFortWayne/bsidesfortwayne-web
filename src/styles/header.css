@@ -115,14 +115,21 @@
     border-bottom: 1px solid #404040;
     flex-direction: column;
     gap: 0;
-    padding: 1rem;
+    padding: 0;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: max-height 0.3s ease, opacity 0.2s ease, visibility 0.2s ease;
   }
 
   .nav-menu.active {
     max-height: 400px;
+    padding: 1rem;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .nav-menu li {

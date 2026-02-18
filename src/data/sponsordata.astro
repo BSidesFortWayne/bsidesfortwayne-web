@@ -4,6 +4,7 @@ export interface Sponsor {
     name: string;
     logo: string;
     url: string;
+    draft?: boolean | false;
     tier: 'platinum' | 'gold' | 'silver' | 'bronze' | 'custom';
 }
 
@@ -73,13 +74,20 @@ export const sponsors: Sponsor[] = [
         logo: 'https://preferreditgroup.com/wp-content/uploads/2024/04/message.png',
         url: 'https://preferreditgroup.com/',
         tier: 'custom',
+        draft: true,
     },
     {
         name: 'Check Point Software Technologies Ltd.',
         logo: '/logos/sponsors/2026/Check-Point-2025-logo-white.svg',
         url: 'https://www.checkpoint.com/',
         tier: 'custom',
+        draft: true,
+    },
+    {
+        name: 'AuthorizationHub',
+        logo: '/logos/sponsors/2026/authorizationhub.png',
+        url: 'https://authorizationhub.com/',
+        tier: 'silver',
     }
-
 ];
 ---

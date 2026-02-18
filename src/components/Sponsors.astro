@@ -2,14 +2,16 @@
 import type {Sponsor} from '../data/sponsordata.astro';
 import { sponsors } from '../data/sponsordata.astro';
 
-const sponsorsByTier = sponsors.reduce(
-    (acc, sponsor) => {
-        if (!acc[sponsor.tier]) acc[sponsor.tier] = [];
-        acc[sponsor.tier].push(sponsor);
-        return acc;
-    },
-    {} as Record<string, Sponsor[]>
-);
+const sponsorsByTier = sponsors
+    .filter((sponsor) => !sponsor.draft)
+    .reduce(
+        (acc, sponsor) => {
+            if (!acc[sponsor.tier]) acc[sponsor.tier] = [];
+            acc[sponsor.tier].push(sponsor);
+            return acc;
+        },
+        {} as Record<string, Sponsor[]>
+    );
 
 ---
 
