@@ -1,0 +1,75 @@
+---
+import type {Sponsor} from '../data/sponsordata.astro';
+import { sponsors } from '../data/sponsordata.astro';
+
+const sponsorsByTier = sponsors
+    .filter((sponsor) => !sponsor.draft)
+    .reduce(
+        (acc, sponsor) => {
+            if (!acc[sponsor.tier]) acc[sponsor.tier] = [];
+            acc[sponsor.tier].push(sponsor);
+            return acc;
+        },
+        {} as Record<string, Sponsor[]>
+    );
+
+---
+
+<section class="Sponsors">
+    <h2 style="text-align:center;">Our Sponsors</h2>
+    
+    {Object.entries(sponsorsByTier).map(([tier, tierSponsors]) => (
+        <div class="tier" data-tier={tier}>
+            <h3 >{tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>
+            <div class="sponsors-grid">
+                {tierSponsors.map((sponsor) => (
+                    <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="sponsor-card">
+                        <img src={sponsor.logo} alt={sponsor.name} />
+                    </a>
+                ))}
+            </div>
+        </div>
+    ))}
+</section>
+
+<style>
+    .sponsors {
+        padding: 2rem;
+    }
+
+    .tier {
+        margin-bottom: 3rem;
+    }
+
+    .tier h3 {
+        text-transform: capitalize;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .sponsors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+    }
+
+    .sponsor-card {
+        text-decoration: none;
+        text-align: center;
+        transition: transform 0.2s;
+    }
+
+    .sponsor-card:hover {
+        transform: scale(1.05);
+    }
+
+    .sponsor-card img {
+        max-width: 50%;
+        height: auto;
+        margin-bottom: 0.5rem;
+    }
+
+    .sponsor-card p {
+        color: var(--text-color);
+    }
+</style>

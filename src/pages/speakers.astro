@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface Speaker {
+    id: string;
+    name: string;
+    image: string;
+    description: string;
+    talkId: string;
+}
+
+const speakers: Speaker[] = [
+    {
+        id: '1',
+        name: 'Speaker Name',
+        image: '/images/speaker-1.jpg',
+        description: 'Brief description of the speaker and their expertise.',
+        talkId: 'talk-1',
+    },
+    // Add more speakers here
+];
+---
+
+<Layout title="Speakers">
+    <main>
+        <h1>Speakers</h1>
+        <div class="speakers-grid">
+            {speakers.map((speaker) => (
+                <div class="speaker-card">
+                    <img src={speaker.image} alt={speaker.name} />
+                    <h2>{speaker.name}</h2>
+                    <p>{speaker.description}</p>
+                    <a href={`/schedule#${speaker.talkId}`}>View Talk Schedule</a>
+                </div>
+            ))}
+        </div>
+    </main>
+</Layout>
+
+<style>
+    .speakers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .speaker-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .speaker-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+
+    .speaker-card h2 {
+        margin: 1rem 0 0.5rem;
+    }
+
+    .speaker-card a {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background-color: #0969da;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    .speaker-card a:hover {
+        background-color: #0860ca;
+    }
+</style>
