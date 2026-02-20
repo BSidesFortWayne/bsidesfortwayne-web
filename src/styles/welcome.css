@@ -1,0 +1,271 @@
+.welcome {
+  padding: 4rem 0 2rem;
+  animation: slideIn 0.5s ease-out;
+}
+
+.container-md {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.welcome-hero {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  color: #e8e8e8;
+}
+
+.hero-title .accent {
+  color: #268FBF;
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: #b0b0b0;
+  margin-bottom: 0 !important;
+  font-weight: 400;
+}
+
+.welcome-message {
+  text-align: center;
+}
+
+.message-card {
+  background: linear-gradient(135deg, rgba(38, 143, 191, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
+  border: 1px solid #268FBF;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.message-card h2 {
+  color: #268FBF;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.message-card p {
+  color: #e8e8e8;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.message-card p:last-child {
+  margin-bottom: 0;
+}
+
+.message-card .highlight {
+  color: #00d4ff;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+.welcome-cta {
+  display: flex;
+  justify-content: center;
+}
+
+.cta-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #268FBF 0%, #3da5d9 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(38, 143, 191, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(38, 143, 191, 0.4);
+  background: linear-gradient(135deg, #3da5d9 0%, #268FBF 100%);
+}
+
+.welcome-info {
+  margin-top: 2rem;
+}
+
+.info-grid {
+  display: flex;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.info-card {
+  background-color: #2d2d2d;
+  border: 1px solid #404040;
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  border-color: #268FBF;
+  background-color: #333333;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(38, 143, 191, 0.2);
+}
+
+.info-card h3 {
+  color: #268FBF;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.info-card p {
+  color: #b0b0b0;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.link-arrow {
+  color: #268FBF;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.link-arrow:hover {
+  color: #00d4ff;
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .welcome {
+    padding: 2rem 0 1rem;
+  }
+
+  .container-md {
+    padding: 0 1rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-title .accent {
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+  }
+
+  .message-card {
+    padding: 1.5rem;
+  }
+
+  .message-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .message-card p {
+    font-size: 0.95rem;
+  }
+
+  .cta-group {
+    gap: 0.75rem;
+    flex-direction: column;
+  }
+
+  .btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .info-card {
+    padding: 1.5rem;
+  }
+
+  .info-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .info-card p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome {
+    padding: 1.5rem 0 1rem;
+  }
+
+  .welcome-content {
+    gap: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-title .accent {
+    font-size: 1.4rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .message-card {
+    padding: 1.25rem;
+  }
+
+  .message-card h2 {
+    font-size: 1.25rem;
+  }
+
+  .message-card p {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    padding: 0.625rem 1rem;
+    font-size: 0.85rem;
+  }
+}

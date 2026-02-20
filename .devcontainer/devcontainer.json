@@ -1,0 +1,15 @@
+{
+  "name": "BSFW-AstroDevContainer",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["README.md", "CONTRIBUTING.md"]
+    },
+    "vscode": {
+      "extensions": ["astro-build.astro-vscode", "esbenp.prettier-vscode"]
+    }
+  }
+}

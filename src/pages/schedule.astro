@@ -1,0 +1,177 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const schedule = [
+    { time: '8:00 AM', track1: 'Registration & Breakfast', track2: 'Registration & Breakfast', track3: 'Registration & Breakfast', talkId: 'registration' },
+    { time: '9:00 AM', track1: 'Keynote: Security Trends', track2: 'Keynote: Security Trends', track3: 'Keynote: Security Trends', talkId: 'keynote' },
+    { time: '10:00 AM', track1: 'Track 1 Talk 1', track2: 'Track 2 Talk 1', track3: 'Track 3 Talk 1', talkId: 'talk-1-1' },
+    { time: '11:00 AM', track1: 'Track 1 Talk 2', track2: 'Track 2 Talk 2', track3: 'Track 3 Talk 2', talkId: 'talk-1-2' },
+    { time: '12:00 PM', track1: 'Lunch', track2: 'Lunch', track3: 'Lunch', talkId: 'lunch' },
+    { time: '1:00 PM', track1: 'Track 1 Talk 3', track2: 'Track 2 Talk 3', track3: 'Track 3 Talk 3', talkId: 'talk-1-3' },
+    { time: '2:00 PM', track1: 'Track 1 Talk 4', track2: 'Track 2 Talk 4', track3: 'Track 3 Talk 4', talkId: 'talk-1-4' },
+    { time: '3:00 PM', track1: 'Break', track2: 'Break', track3: 'Break', talkId: 'break' },
+    { time: '3:30 PM', track1: 'Track 1 Talk 5', track2: 'Track 2 Talk 5', track3: 'Track 3 Talk 5', talkId: 'talk-1-5' },
+    { time: '4:30 PM', track1: 'Closing Remarks', track2: 'Closing Remarks', track3: 'Closing Remarks', talkId: 'closing' },
+];
+---
+
+<Layout title="Conference Schedule - BSides Fort Wayne 2026">
+    <div class="container">
+        <section class="schedule-section">
+            <h1>Conference Schedule</h1>
+            <p class="subtitle">June 6, 2026</p>
+            
+            <div class="schedule-grid">
+                <div class="track card">
+                    <div class="track-header">
+                        <h2>Track 1</h2>
+                    </div>
+                    <div class="events">
+                        {schedule.map((slot) => (
+                            <div class={`${Astro.url.hash === `#${slot.talkId}` ? 'time-slot-highlight' : 'time-slot'}`}>
+                                <div class="time">{slot.time}</div>
+                                <a href={`#${slot.talkId}`} class="event">{slot.track1}</a>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                
+                <div class="track card">
+                    <div class="track-header">
+                        <h2>Track 2</h2>
+                    </div>
+                    <div class="events">
+                        {schedule.map((slot) => (
+                            <div class="time-slot">
+                                <div class="time">{slot.time}</div>
+                                <div class="event">{slot.track2}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                
+                <div class="track card">
+                    <div class="track-header">
+                        <h2>Track 3</h2>
+                    </div>
+                    <div class="events">
+                        {schedule.map((slot) => (
+                            <div class="time-slot">
+                                <div class="time">{slot.time}</div>
+                                <div class="event">{slot.track3}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</Layout>
+
+<style>
+    .schedule-section {
+        animation: slideIn 0.5s ease-out;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 0.5rem;
+        color: #e8e8e8;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #268FBF;
+        font-size: 1.1rem;
+        margin-bottom: 2rem !important;
+        font-weight: 500;
+    }
+
+    .schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    .track {
+        background-color: #2d2d2d;
+        border: 1px solid #404040;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .track:hover {
+        border-color: #268FBF;
+        box-shadow: 0 10px 30px rgba(38, 143, 191, 0.2);
+    }
+
+    .track-header {
+        background: linear-gradient(135deg, #268FBF 0%, #1a5a8f 100%);
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .track-header h2 {
+        margin: 0;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .events {
+        padding: 1rem;
+    }
+
+    .time-slot {
+        padding: 1.25rem;
+        border-bottom: 1px solid #404040;
+        transition: all 0.2s ease;
+    }
+    .time-slot-highlight {
+        padding: 1.25rem;
+        border-bottom: 2px solid #268FBF;
+        background-color: #333333;
+        transition: all 0.2s ease;
+    }
+    .time-slot:hover {
+        background-color: #3a3a3a;
+        padding-left: 1.75rem;
+    }
+
+    .time-slot:last-child {
+        border-bottom: none;
+    }
+
+    .time {
+        font-weight: 600;
+        color: #268FBF;
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .event {
+        color: #e8e8e8;
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+    @media (max-width: 1024px) {
+        .schedule-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .schedule-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .track-header h2 {
+            font-size: 1.25rem;
+        }
+    }
+</style>
