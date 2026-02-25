@@ -3,7 +3,13 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "postCreateCommand": "npm install",
+  "portsAttributes": {
+    "4321": {
+      "label": "Application",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "forwardPorts": [4321],
   "customizations": {
     "codespaces": {
       "openFiles": ["README.md", "CONTRIBUTING.md"]

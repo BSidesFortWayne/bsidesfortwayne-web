@@ -1,13 +1,10 @@
-FROM node:lts-alpine3.22
-
-RUN apk update
-RUN apk add git
-RUN apk add openssh
-
+FROM node:lts-trixie
 # Point to where we will bind-mount the host's SSH agent socket
 ENV SSH_AUTH_SOCK=/ssh-agent
 RUN printf 'Host *\n  StrictHostKeyChecking accept-new\n' > /etc/ssh/ssh_config
 
-RUN addgroup -S bsfw_dev 
-RUN adduser -S bsfw_dev -G bsfw_dev -s /bin/sh
+# Create the bsfw_dev user as an administrator
+RUN groupadd bsfw_dev
+RUN useradd -s /bin/bash -m -g bsfw_dev bsfw_dev
+RUN chown -R bsfw_dev:bsfw_dev /home/bsfw_dev
 USER bsfw_dev
