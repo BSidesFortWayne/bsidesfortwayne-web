@@ -32,4 +32,13 @@
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
 	 */
 	// "services": [  {   "binding": "MY_SERVICE",   "service": "my-service"  } ]
+	,
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "bsfw-web",
+			"database_id": "ff221eb7-1606-420a-8866-6a80605d007d",
+			"preview_database_id":"local"
+		}
+	]
 }
