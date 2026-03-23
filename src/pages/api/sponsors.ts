@@ -34,7 +34,7 @@ export const GET: APIRoute = async (context) => {
     return new Response(
       JSON.stringify({
         message: "Something went wrong",
-        error: error.message,
+        error: (error as Error).message,
       }),
       { status: 500 }
     );
