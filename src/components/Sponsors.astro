@@ -1,75 +1,98 @@
 ---
-import type {Sponsor} from '../data/sponsordata.astro';
-import { sponsors } from '../data/sponsordata.astro';
-
-const sponsorsByTier = sponsors
-    .filter((sponsor) => !sponsor.draft)
-    .reduce(
-        (acc, sponsor) => {
-            if (!acc[sponsor.tier]) acc[sponsor.tier] = [];
-            acc[sponsor.tier].push(sponsor);
-            return acc;
-        },
-        {} as Record<string, Sponsor[]>
-    );
-
+import '../styles/sponsor.css';
 ---
-
+ 
 <section class="Sponsors">
-    <h2 style="text-align:center;">Our Sponsors</h2>
-    
-    {Object.entries(sponsorsByTier).map(([tier, tierSponsors]) => (
-        <div class="tier" data-tier={tier}>
-            <h3 >{tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>
-            <div class="sponsors-grid">
-                {tierSponsors.map((sponsor) => (
-                    <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="sponsor-card">
-                        <img src={sponsor.logo} alt={sponsor.name} />
-                    </a>
-                ))}
-            </div>
-        </div>
-    ))}
+  <h2 style="text-align:center;">Our Sponsors</h2>
+
+  <div id="sponsors-root">
+    <!-- client-side rendered -->
+  </div>
 </section>
 
-<style>
-    .sponsors {
-        padding: 2rem;
-    }
+<script>
+  async function loadSponsors() {
+    const root = document.getElementById("sponsors-root");
+    if (!root) return;
 
-    .tier {
-        margin-bottom: 3rem;
-    }
+    try {
+      const res = await fetch("/api/sponsors", { headers: { "Accept": "application/json" } });
+      if (!res.ok) throw new Error(`Failed to load sponsors: ${res.status}`);
+      
+      interface sponsorstype {
+        id: number, 
+        name: string, 
+        url: string, 
+        logo_path: string, 
+        sponsorship_tier: string, 
+        draft_status: boolean
+      }
 
-    .tier h3 {
-        text-transform: capitalize;
-        margin-bottom: 1rem;
-        text-align: center;
-    }
+      const sponsors: sponsorstype[] = await res.json();
 
-    .sponsors-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-    }
+      // filter drafts
+      const published = sponsors.filter(s => !s.draft_status);
 
-    .sponsor-card {
-        text-decoration: none;
-        text-align: center;
-        transition: transform 0.2s;
-    }
+      // group by tier
+      const byTier = new Map();
+      for (const s of published) {
+        const tier = s.sponsorship_tier ?? "other";
+        if (!byTier.has(tier)) byTier.set(tier, []);
+        byTier.get(tier).push(s);
+      }
 
-    .sponsor-card:hover {
-        transform: scale(1.05);
-    }
+      // sort tiers (customize order as desired)
+      const tierOrder = ["platinum", "gold", "silver", "bronze", "other"];
+      const tiers = Array.from(byTier.keys()).sort((a, b) => {
+        const ai = tierOrder.indexOf(a);
+        const bi = tierOrder.indexOf(b);
+        if (ai === -1 && bi === -1) return a.localeCompare(b);
+        if (ai === -1) return 1;
+        if (bi === -1) return -1;
+        return ai - bi;
+      });
 
-    .sponsor-card img {
-        max-width: 50%;
-        height: auto;
-        margin-bottom: 0.5rem;
-    }
 
-    .sponsor-card p {
-        color: var(--text-color);
+      // render
+      root.innerHTML = "";
+      for (const tier of tiers) {
+        const section = document.createElement("div");
+        section.className = "tier";
+        section.dataset.tier = tier;
+
+        const h3 = document.createElement("h3");
+        h3.textContent = tier.charAt(0).toUpperCase() + tier.slice(1);
+        section.appendChild(h3);
+
+        const grid = document.createElement("div");
+        grid.className = "sponsors-grid";
+        //console.log(tier)
+        for (const sponsor of byTier.get(tier)) {
+          
+          const a = document.createElement("a");
+          a.href = sponsor.url;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.className = "sponsor-card";
+
+          const img = document.createElement("img");
+          img.src = sponsor.logo_path;
+          img.alt = sponsor.name;
+
+          a.appendChild(img);
+          grid.appendChild(a);
+        
+        }
+
+        section.appendChild(grid);
+        root.appendChild(section);
+      }
+    } catch (e) {
+      root.innerHTML = "<p>Unable to load sponsors right now.</p>";
+      console.error(e);
     }
-</style>
+  }
+
+  loadSponsors();
+</script>
+
