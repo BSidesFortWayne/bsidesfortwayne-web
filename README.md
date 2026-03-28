@@ -3,7 +3,7 @@
 ## How to get moving
 
 If you use devcontainers, All tools are preinstalled and vscode extenstions for astro are auto added.
-The following command will start a local test server. `npm run dev` - local webserver on port 4321
+The following command will start a local test server and if using vscode it will open the integrate web browser to the dev site. `npm run dev`
 
 If not, Install node and then do a `npm install` in the project directory and it will install everything needed
 

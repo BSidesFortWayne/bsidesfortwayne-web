@@ -1,0 +1,40 @@
+
+  .sponsors {
+    padding: 2rem;
+  }
+
+  .tier {
+    margin-bottom: 3rem;
+  }
+
+  .tier h3 {
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .sponsor-card {
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+
+  .sponsor-card:hover {
+    transform: scale(1.05);
+  }
+
+  .sponsor-card img {
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  .sponsor-card p {
+    color: var(--text-color);
+  }
