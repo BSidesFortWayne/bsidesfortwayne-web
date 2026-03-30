@@ -1,18 +1,259 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const schedule = [
-    { time: '8:00 AM', track1: 'Registration & Breakfast', track2: 'Registration & Breakfast', track3: 'Registration & Breakfast', talkId: 'registration' },
-    { time: '9:00 AM', track1: 'Keynote: Security Trends', track2: 'Keynote: Security Trends', track3: 'Keynote: Security Trends', talkId: 'keynote' },
-    { time: '10:00 AM', track1: 'Track 1 Talk 1', track2: 'Track 2 Talk 1', track3: 'Track 3 Talk 1', talkId: 'talk-1-1' },
-    { time: '11:00 AM', track1: 'Track 1 Talk 2', track2: 'Track 2 Talk 2', track3: 'Track 3 Talk 2', talkId: 'talk-1-2' },
-    { time: '12:00 PM', track1: 'Lunch', track2: 'Lunch', track3: 'Lunch', talkId: 'lunch' },
-    { time: '1:00 PM', track1: 'Track 1 Talk 3', track2: 'Track 2 Talk 3', track3: 'Track 3 Talk 3', talkId: 'talk-1-3' },
-    { time: '2:00 PM', track1: 'Track 1 Talk 4', track2: 'Track 2 Talk 4', track3: 'Track 3 Talk 4', talkId: 'talk-1-4' },
-    { time: '3:00 PM', track1: 'Break', track2: 'Break', track3: 'Break', talkId: 'break' },
-    { time: '3:30 PM', track1: 'Track 1 Talk 5', track2: 'Track 2 Talk 5', track3: 'Track 3 Talk 5', talkId: 'talk-1-5' },
-    { time: '4:30 PM', track1: 'Closing Remarks', track2: 'Closing Remarks', track3: 'Closing Remarks', talkId: 'closing' },
+const tracks = [
+    { id: 'track-1', name: 'International Ball Room' },
+    { id: 'track-2', name: 'Classic Ballroom' },
+    { id: 'track-3', name: 'CTF & Badge Hacking' },
 ];
+
+const sessions = [
+    {
+        id: 'registration',
+        title: 'Doors Open & Registration',
+        start: '0800',
+        end: '0900',
+        trackStart: 'track-1',
+        trackEnd: 'track-3',
+        speaker: '',
+    },
+    {
+        id: 'lunch',
+        title: 'Lunch',
+        start: '1200',
+        end: '1300',
+        trackStart: 'track-1',
+        trackEnd: 'track-2',
+        speaker: 'Included with Registration',
+    },
+    {
+        id: 'talk-3-1',
+        title: 'CTF',
+        start: '1000',
+        end: '1600',
+        trackStart: 'track-3',
+        trackEnd: 'track-3',
+        speaker: '',
+    },
+    {
+        id: 'keynote',
+        title: 'Keynote: Security Trends',
+        start: '0900',
+        end: '1000',
+        trackStart: 'track-1',
+        trackEnd: 'track-3',
+        speaker: 'Jeff Cody',
+    },
+
+    {
+        id: 'talk-1-1',
+        title: '$200 and a Conversation: How AI Just Democratized Security Infrastructure',
+        start: '1000',
+        end: '1100',
+        trackStart: 'track-1',
+        trackEnd: 'track-1',
+        speaker: 'KoiaKoia',
+    },
+    {
+        id: 'talk-1-2',
+        title: "Don't Feed the Trolls (or the Models): Assessing Data Leakage and Poisoning Risks in GenAI",
+        start: '1100',
+        end: '1130',
+        trackStart: 'track-1',
+        trackEnd: 'track-1',
+        speaker: 'Richard Rieben',
+    },
+    {
+        id: 'talk-1-3',
+        title: "Break - Lunch Prep",
+        start: '1130',
+        end: '1200',
+        trackStart: 'track-1',
+        trackEnd: 'track-1',
+        speaker: '',
+    },
+    {
+        id: 'talk-1-4',
+        title: "Seeing Is Deceiving: Deepfakes, Creative Power, and the New Trust Crisis",
+        start: '1300',
+        end: '1400',
+        trackStart: 'track-1',
+        trackEnd: 'track-1',
+        speaker: 'Kyle Hinterberg',
+    },
+    {
+        id: 'talk-1-5',
+        title: "Definitely Not Secure (DNS)",
+        start: '1400',
+        end: '1500',
+        trackStart: 'track-1',
+        trackEnd: 'track-1',
+        speaker: 'Matt Scheurer',
+    },
+    {
+        id: 'talk-1-6',
+        title: "Vishing From a Cybersecurity Professional POV",
+        start: '1500',
+        end: '1530',
+        trackStart: 'track-1',
+        trackEnd: 'track-1',
+        speaker: 'Justin Youvan',
+    },
+    {
+        id: 'talk-1-7',
+        title: "Cory Hlavacek - From Pitch to Program: Securing Executive Buy-In for Threat Intelligence Initiatives",
+        start: '1530',
+        end: '1630',
+        trackStart: 'track-1',
+        trackEnd: 'track-1',
+        speaker: 'Justin Youvan',
+    },
+    {
+        id: 'talk-2-1',
+        title: 'Securing Audiovisual and Unified Communications environments',
+        start: '1000',
+        end: '1030',
+        trackStart: 'track-2',
+        trackEnd: 'track-2',
+        speaker: 'Doug Schaefer',
+    },
+    {
+        id: 'talk-2-2',
+        title: 'Accidental AppSec: Building Application Security Without a Dedicated Team',
+        start: '1030',
+        end: '1100',
+        trackStart: 'track-2',
+        trackEnd: 'track-2',
+        speaker: 'Eric Gaby',
+    },
+    {
+        id: 'talk-2-3',
+        title: 'Robert Couch Jr - Security Awareness Is Not a Compliance Checkbox: Why User Ownership Determines Security Outcomes',
+        start: '1100',
+        end: '1130',
+        trackStart: 'track-2',
+        trackEnd: 'track-2',
+        speaker: 'Robert Couch Jr',
+    },
+    {
+        id: 'talk-2-4',
+        title: "From Quiet to Mic: An Introvert's Guide to Cybersecurity Public Speaking",
+        start: '1130',
+        end: '1200',
+        trackStart: 'track-2',
+        trackEnd: 'track-2',
+        speaker: 'Anushree Vaidya',
+    },
+    {
+        id: 'talk-2-5',
+        title: "Toby Chin - A.I., Code, and Security",
+        start: '1300',
+        end: '1330',
+        trackStart: 'track-2',
+        trackEnd: 'track-2',
+        speaker: 'Toby Chin',
+    },
+    {
+        id: 'talk-2-6',
+        title: "Hardening Security by Pruning JavaScript Dependencies",
+        start: '1330',
+        end: '1400',
+        trackStart: 'track-2',
+        trackEnd: 'track-2',
+        speaker: 'Jimender2',
+    },
+    {
+        id: 'talk-2-7',
+        title: "Securing the Future: Intelligent Network Security in a Connected World",
+        start: '1400',
+        end: '1500',
+        trackStart: 'track-2',
+        trackEnd: 'track-2',
+        speaker: 'David Akinsanya',
+    },
+    {
+        id: 'talk-2-8',
+        title: "Why Passing Your SOX Audit Doesn't Mean You're Secure",
+        start: '1500',
+        end: '1530',
+        trackStart: 'track-2',
+        trackEnd: 'track-2',
+        speaker: 'Rachana Sharma',
+    },
+    {
+        id: 'talk-2-9',
+        title: '"Why Is My Hair on Fire?": Debunking Irrational Objections to AI, Data Centers, and Carbon Sequestration',
+        start: '1530',
+        end: '1630',
+        trackStart: 'track-2',
+        trackEnd: 'track-2',
+        speaker: 'Chuck Knox',
+    },
+    {
+        id: 'closing',
+        title: 'Closing Remarks',
+        start: '1630',
+        end: '1700',
+        trackStart: 'track-1',
+        trackEnd: 'track-3',
+        speaker: 'BSides Fort Wayne Team',
+    },
+];
+
+const dayStart = 8 * 60;
+const dayEnd = 17 * 60;
+
+const toHHMM = (minutes: number) => {
+    const hour = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    return `${String(hour).padStart(2, '0')}${String(mins).padStart(2, '0')}`;
+};
+
+const formatTime = (value: string) => {
+    const hour24 = Number.parseInt(value.slice(0, 2), 10);
+    const mins = value.slice(2);
+    const suffix = hour24 >= 12 ? 'PM' : 'AM';
+    const hour12 = hour24 % 12 || 12;
+    return `${hour12}:${mins} ${suffix}`;
+};
+
+const timeLines: string[] = [];
+for (let current = dayStart; current <= dayEnd; current += 30) {
+    timeLines.push(toHHMM(current));
+}
+
+const timeLabels = timeLines.filter((line) => line !== toHHMM(dayEnd));
+const gridRows = ['[tracks] auto', ...timeLines.map((line) => `[time-${line}] auto`)].join(' ');
+const trackOrder = new Map(tracks.map((track, index) => [track.id, index]));
+
+const sessionsByStart = timeLabels
+    .map((time) => ({
+        time,
+        items: sessions.filter((session) => session.start === time),
+    }))
+    .filter((group) => group.items.length > 0);
+
+const getTrackLabel = (session: typeof sessions[number]) => {
+    const startIndex = trackOrder.get(session.trackStart) ?? 0;
+    const endIndex = trackOrder.get(session.trackEnd) ?? startIndex;
+
+    if (startIndex === 0 && endIndex === tracks.length - 1) {
+        return 'All Tracks';
+    }
+
+    if (startIndex === endIndex) {
+        return tracks[startIndex].name;
+    }
+
+    return `${tracks[startIndex].name} + ${tracks[endIndex].name}`;
+};
+
+const gridPlacement = (session: typeof sessions[number]) => {
+    return {
+        gridRow: `time-${session.start} / time-${session.end}`,
+        gridColumn: `${session.trackStart}-start / ${session.trackEnd}-end`,
+    };
+};
 ---
 
 <Layout title="Conference Schedule - BSides Fort Wayne 2026">
@@ -20,49 +261,52 @@ const schedule = [
         <section class="schedule-section">
             <h1>Conference Schedule</h1>
             <p class="subtitle">June 6, 2026</p>
-            
-            <div class="schedule-grid">
-                <div class="track card">
-                    <div class="track-header">
-                        <h2>Track 1</h2>
-                    </div>
-                    <div class="events">
-                        {schedule.map((slot) => (
-                            <div class={`${Astro.url.hash === `#${slot.talkId}` ? 'time-slot-highlight' : 'time-slot'}`}>
-                                <div class="time">{slot.time}</div>
-                                <a href={`#${slot.talkId}`} class="event">{slot.track1}</a>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                
-                <div class="track card">
-                    <div class="track-header">
-                        <h2>Track 2</h2>
-                    </div>
-                    <div class="events">
-                        {schedule.map((slot) => (
-                            <div class="time-slot">
-                                <div class="time">{slot.time}</div>
-                                <div class="event">{slot.track2}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                
-                <div class="track card">
-                    <div class="track-header">
-                        <h2>Track 3</h2>
-                    </div>
-                    <div class="events">
-                        {schedule.map((slot) => (
-                            <div class="time-slot">
-                                <div class="time">{slot.time}</div>
-                                <div class="event">{slot.track3}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+
+            <div class="schedule-mobile">
+                {sessionsByStart.map((group) => (
+                    <section class="mobile-time-group">
+                        <h3 class="mobile-time">{formatTime(group.time)}</h3>
+                        <div class="mobile-session-list">
+                            {group.items.map((session) => (
+                                <article
+                                    id={`m-${session.id}`}
+                                    class={`session mobile-session ${Astro.url.hash === `#${session.id}` ? 'session-highlight' : ''}`}
+                                >
+                                    <h4 class="session-title">{session.title}</h4>
+                                    <p class="session-meta">{formatTime(session.start)} - {formatTime(session.end)}</p>
+                                    <p class="session-speaker">{session.speaker}</p>
+                                    <p class="session-track-label">{getTrackLabel(session)}</p>
+                                </article>
+                            ))}
+                        </div>
+                    </section>
+                ))}
+            </div>
+
+            <div class="schedule-desktop" style={`--schedule-grid-rows: ${gridRows};`}>
+                {tracks.map((track) => (
+                    <span class="track-slot" aria-hidden="true" style={`grid-column: ${track.id};`}>
+                        {track.name}
+                    </span>
+                ))}
+
+                {timeLabels.map((time) => (
+                    <h3 class="time-slot" style={`grid-row: time-${time};`}>
+                        {formatTime(time)}
+                    </h3>
+                ))}
+
+                {sessions.map((session) => (
+                    <article
+                        id={session.id}
+                        class={`session ${Astro.url.hash === `#${session.id}` ? 'session-highlight' : ''}`}
+                        style={gridPlacement(session)}
+                    >
+                        <h4 class="session-title">{session.title}</h4>
+                        <p class="session-meta">{formatTime(session.start)} - {formatTime(session.end)}</p>
+                        <p class="session-speaker">{session.speaker}</p>
+                    </article>
+                ))}
             </div>
         </section>
     </div>
@@ -83,95 +327,176 @@ const schedule = [
         text-align: center;
         color: #268FBF;
         font-size: 1.1rem;
-        margin-bottom: 2rem !important;
+        margin-bottom: 2rem;
         font-weight: 500;
     }
 
-    .schedule-grid {
+    .schedule-mobile {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
+        gap: 1rem;
     }
 
-    .track {
-        background-color: #2d2d2d;
-        border: 1px solid #404040;
-        border-radius: 12px;
-        overflow: hidden;
-        transition: all 0.3s ease;
+    .mobile-time-group {
+        border: 1px solid #3b4654;
+        border-radius: 14px;
+        padding: 0.8rem;
+        background: linear-gradient(180deg, #212b35 0%, #1c252f 100%);
     }
 
-    .track:hover {
-        border-color: #268FBF;
-        box-shadow: 0 10px 30px rgba(38, 143, 191, 0.2);
+    .mobile-time {
+        margin: 0 0 0.75rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #9fc4de;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
     }
 
-    .track-header {
-        background: linear-gradient(135deg, #268FBF 0%, #1a5a8f 100%);
-        padding: 1.5rem;
-        text-align: center;
+    .mobile-session-list {
+        display: grid;
+        gap: 0.75rem;
     }
 
-    .track-header h2 {
-        margin: 0;
-        color: white;
-        font-size: 1.5rem;
+    .schedule-desktop {
+        display: none;
     }
 
-    .events {
-        padding: 1rem;
+    .track-slot {
+        display: none;
     }
 
     .time-slot {
-        padding: 1.25rem;
-        border-bottom: 1px solid #404040;
-        transition: all 0.2s ease;
-    }
-    .time-slot-highlight {
-        padding: 1.25rem;
-        border-bottom: 2px solid #268FBF;
-        background-color: #333333;
-        transition: all 0.2s ease;
-    }
-    .time-slot:hover {
-        background-color: #3a3a3a;
-        padding-left: 1.75rem;
-    }
-
-    .time-slot:last-child {
-        border-bottom: none;
-    }
-
-    .time {
-        font-weight: 600;
-        color: #268FBF;
-        font-size: 0.85rem;
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .event {
-        color: #e8e8e8;
+        color: #8f9fb1;
         font-size: 0.95rem;
-        line-height: 1.4;
+        font-weight: 600;
+        margin: 0 0 0.75rem;
+        letter-spacing: 0.02em;
     }
 
-    @media (max-width: 1024px) {
-        .schedule-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+    .session {
+        background-color: #2d2d2d;
+        border: 1px solid #404040;
+        border-radius: 12px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        text-align: left;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .session:hover {
+        transform: translateY(-2px);
+        border-color: #268FBF;
+        box-shadow: 0 12px 24px rgba(38, 143, 191, 0.16);
+    }
+
+    .session-highlight {
+        border-color: #268FBF;
+        box-shadow: 0 0 0 2px rgba(38, 143, 191, 0.25);
+    }
+
+    .session-title {
+        margin: 0 0 0.5rem;
+        color: #f3f4f6;
+        font-size: 1.05rem;
+        line-height: 1.3;
+    }
+
+    .session-meta,
+    .session-speaker {
+        margin: 0;
+        color: #b8c2cf;
+        font-size: 0.9rem;
+    }
+
+    .session-speaker {
+        margin-top: 0.35rem;
+    }
+
+    .session-track-label {
+        margin: 0.5rem 0 0;
+        color: #8fb6d1;
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    @supports (display: grid) {
+        @media (min-width: 980px) {
+            .schedule-mobile {
+                display: none;
+            }
+
+            .schedule-desktop {
+                display: grid;
+                gap: 0.75rem;
+                grid-template-rows: var(--schedule-grid-rows);
+                grid-template-columns:
+                    [times] 6rem
+                    [track-1-start] minmax(0, 1fr)
+                    [track-1-end track-2-start] minmax(0, 1fr)
+                    [track-2-end track-3-start] minmax(0, 1fr)
+                    [track-3-end];
+                align-items: stretch;
+            }
+
+            .track-slot {
+                grid-row: tracks;
+                display: block;
+                position: sticky;
+                top: 0;
+                z-index: 20;
+                margin: 0;
+                padding: 0.85rem 0.7rem;
+                border: 1px solid #3e4956;
+                border-radius: 10px;
+                background: linear-gradient(160deg, #233142 0%, #1a2734 100%);
+                color: #d9e2ec;
+                font-size: 0.94rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+            }
+
+            .time-slot {
+                grid-column: times;
+                margin: 0;
+                padding-top: 0.45rem;
+                text-align: right;
+                font-size: 0.64rem;
+                color: #88a2b8;
+                border-top: 1px dashed rgba(102, 130, 154, 0.5);
+                padding-right: 0.5rem;
+            }
+
+            .session {
+                margin: 0;
+                min-height: 84px;
+            }
+
+            .session-track-label {
+                display: none;
+            }
         }
     }
 
     @media (max-width: 768px) {
-        .schedule-grid {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+        .schedule-section {
+            padding-inline: 0.2rem;
         }
 
-        .track-header h2 {
-            font-size: 1.25rem;
+        .mobile-time-group {
+            padding: 0.65rem;
+            border-radius: 12px;
+        }
+
+        .session {
+            padding: 0.9rem;
+        }
+
+        .session-title {
+            font-size: 1rem;
         }
     }
 </style>
