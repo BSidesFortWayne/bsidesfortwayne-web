@@ -1,0 +1,392 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const tracks = [
+    { id: 'track-1', name: 'Track 1' },
+    { id: 'track-2', name: 'Track 2' },
+    { id: 'track-3', name: 'Track 3' },
+];
+
+const sessions = [
+    {
+        id: 'registration',
+        title: 'Doors Open, Registration, and Breakfast',
+        start: '0800',
+        end: '0900',
+        trackStart: 'track-1',
+        trackEnd: 'track-3',
+        speaker: 'Community + Staff',
+    },
+    {
+        id: 'keynote',
+        title: 'Keynote: Security Trends',
+        start: '0900',
+        end: '1000',
+        trackStart: 'track-1',
+        trackEnd: 'track-3',
+        speaker: 'TBA',
+    },
+    {
+        id: 'talk-1-1',
+        title: 'Track 1 Talk 1',
+        start: '1000',
+        end: '1100',
+        trackStart: 'track-1',
+        trackEnd: 'track-1',
+        speaker: 'TBA',
+    },
+    {
+        id: 'talk-2-1',
+        title: 'Track 2 Talk 1',
+        start: '1000',
+        end: '1100',
+        trackStart: 'track-2',
+        trackEnd: 'track-2',
+        speaker: 'TBA',
+    },
+    {
+        id: 'talk-3-1',
+        title: 'Track 3 Talk 1',
+        start: '1000',
+        end: '1100',
+        trackStart: 'track-3',
+        trackEnd: 'track-3',
+        speaker: 'TBA',
+    },
+    {
+        id: 'talk-1-2',
+        title: 'Track 1 Talk 2',
+        start: '1100',
+        end: '1200',
+        trackStart: 'track-1',
+        trackEnd: 'track-1',
+        speaker: 'TBA',
+    },
+    {
+        id: 'talk-2-2',
+        title: 'Track 2 Talk 2',
+        start: '1100',
+        end: '1200',
+        trackStart: 'track-2',
+        trackEnd: 'track-2',
+        speaker: 'TBA',
+    },
+    {
+        id: 'talk-3-2',
+        title: 'Track 3 Talk 2',
+        start: '1100',
+        end: '1200',
+        trackStart: 'track-3',
+        trackEnd: 'track-3',
+        speaker: 'TBA',
+    },
+    {
+        id: 'lunch',
+        title: 'Lunch',
+        start: '1200',
+        end: '1300',
+        trackStart: 'track-1',
+        trackEnd: 'track-3',
+        speaker: 'Included with Registration',
+    },
+    {
+        id: 'talk-1-3',
+        title: 'Track 1 Talk 3',
+        start: '1300',
+        end: '1400',
+        trackStart: 'track-1',
+        trackEnd: 'track-1',
+        speaker: 'TBA',
+    },
+    {
+        id: 'talk-2-3',
+        title: 'Track 2 Talk 3',
+        start: '1300',
+        end: '1400',
+        trackStart: 'track-2',
+        trackEnd: 'track-2',
+        speaker: 'TBA',
+    },
+    {
+        id: 'talk-3-3',
+        title: 'Track 3 Talk 3',
+        start: '1300',
+        end: '1400',
+        trackStart: 'track-3',
+        trackEnd: 'track-3',
+        speaker: 'TBA',
+    },
+    {
+        id: 'talk-1-4',
+        title: 'Track 1 Talk 4',
+        start: '1400',
+        end: '1500',
+        trackStart: 'track-1',
+        trackEnd: 'track-1',
+        speaker: 'TBA',
+    },
+    {
+        id: 'talk-2-4',
+        title: 'Track 2 Talk 4',
+        start: '1400',
+        end: '1500',
+        trackStart: 'track-2',
+        trackEnd: 'track-2',
+        speaker: 'TBA',
+    },
+    {
+        id: 'talk-3-4',
+        title: 'Track 3 Talk 4',
+        start: '1400',
+        end: '1500',
+        trackStart: 'track-3',
+        trackEnd: 'track-3',
+        speaker: 'TBA',
+    },
+    {
+        id: 'break',
+        title: 'Afternoon Break',
+        start: '1500',
+        end: '1530',
+        trackStart: 'track-1',
+        trackEnd: 'track-3',
+        speaker: 'Coffee + Networking',
+    },
+    {
+        id: 'talk-1-5',
+        title: 'Track 1 Talk 5',
+        start: '1530',
+        end: '1630',
+        trackStart: 'track-1',
+        trackEnd: 'track-1',
+        speaker: 'TBA',
+    },
+    {
+        id: 'talk-2-5',
+        title: 'Track 2 Talk 5',
+        start: '1530',
+        end: '1630',
+        trackStart: 'track-2',
+        trackEnd: 'track-2',
+        speaker: 'TBA',
+    },
+    {
+        id: 'talk-3-5',
+        title: 'Track 3 Talk 5',
+        start: '1530',
+        end: '1630',
+        trackStart: 'track-3',
+        trackEnd: 'track-3',
+        speaker: 'TBA',
+    },
+    {
+        id: 'closing',
+        title: 'Closing Remarks',
+        start: '1630',
+        end: '1700',
+        trackStart: 'track-1',
+        trackEnd: 'track-3',
+        speaker: 'BSides Fort Wayne Team',
+    },
+];
+
+const dayStart = 8 * 60;
+const dayEnd = 17 * 60;
+
+const toHHMM = (minutes: number) => {
+    const hour = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    return `${String(hour).padStart(2, '0')}${String(mins).padStart(2, '0')}`;
+};
+
+const formatTime = (value: string) => {
+    const hour24 = Number.parseInt(value.slice(0, 2), 10);
+    const mins = value.slice(2);
+    const suffix = hour24 >= 12 ? 'PM' : 'AM';
+    const hour12 = hour24 % 12 || 12;
+    return `${hour12}:${mins} ${suffix}`;
+};
+
+const timeLines: string[] = [];
+for (let current = dayStart; current <= dayEnd; current += 30) {
+    timeLines.push(toHHMM(current));
+}
+
+const timeLabels = timeLines.filter((line) => line !== toHHMM(dayEnd));
+const gridRows = ['[tracks] auto', ...timeLines.map((line) => `[time-${line}] auto`)].join(' ');
+
+const gridPlacement = (session: typeof sessions[number]) => {
+    return {
+        gridRow: `time-${session.start} / time-${session.end}`,
+        gridColumn: `${session.trackStart}-start / ${session.trackEnd}-end`,
+    };
+};
+---
+
+<Layout title="Conference Schedule - BSides Fort Wayne 2026">
+    <div class="container">
+        <section class="schedule-section">
+            <h1>Conference Schedule</h1>
+            <p class="subtitle">June 6, 2026</p>
+
+            <div class="schedule" style={`--schedule-grid-rows: ${gridRows};`}>
+                {tracks.map((track) => (
+                    <span class="track-slot" aria-hidden="true" style={`grid-column: ${track.id};`}>
+                        {track.name}
+                    </span>
+                ))}
+
+                {timeLabels.map((time) => (
+                    <h3 class="time-slot" style={`grid-row: time-${time};`}>
+                        {formatTime(time)}
+                    </h3>
+                ))}
+
+                {sessions.map((session) => (
+                    <article
+                        id={session.id}
+                        class={`session ${Astro.url.hash === `#${session.id}` ? 'session-highlight' : ''}`}
+                        style={gridPlacement(session)}
+                    >
+                        <h4 class="session-title">{session.title}</h4>
+                        <p class="session-meta">{formatTime(session.start)} - {formatTime(session.end)}</p>
+                        <p class="session-speaker">{session.speaker}</p>
+                    </article>
+                ))}
+            </div>
+        </section>
+    </div>
+</Layout>
+
+<style>
+    .schedule-section {
+        animation: slideIn 0.5s ease-out;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 0.5rem;
+        color: #e8e8e8;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #268FBF;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        font-weight: 500;
+    }
+
+    .schedule {
+        display: block;
+    }
+
+    .track-slot {
+        display: none;
+    }
+
+    .time-slot {
+        color: #8f9fb1;
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin: 0 0 0.75rem;
+        letter-spacing: 0.02em;
+    }
+
+    .session {
+        background-color: #2d2d2d;
+        border: 1px solid #404040;
+        border-radius: 12px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        text-align: left;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .session:hover {
+        transform: translateY(-2px);
+        border-color: #268FBF;
+        box-shadow: 0 12px 24px rgba(38, 143, 191, 0.16);
+    }
+
+    .session-highlight {
+        border-color: #268FBF;
+        box-shadow: 0 0 0 2px rgba(38, 143, 191, 0.25);
+    }
+
+    .session-title {
+        margin: 0 0 0.5rem;
+        color: #f3f4f6;
+        font-size: 1.05rem;
+        line-height: 1.3;
+    }
+
+    .session-meta,
+    .session-speaker {
+        margin: 0;
+        color: #b8c2cf;
+        font-size: 0.9rem;
+    }
+
+    .session-speaker {
+        margin-top: 0.35rem;
+    }
+
+    @supports (display: grid) {
+        @media (min-width: 980px) {
+            .schedule {
+                display: grid;
+                gap: 0.75rem;
+                grid-template-rows: var(--schedule-grid-rows);
+                grid-template-columns:
+                    [times] 6rem
+                    [track-1-start] minmax(0, 1fr)
+                    [track-1-end track-2-start] minmax(0, 1fr)
+                    [track-2-end track-3-start] minmax(0, 1fr)
+                    [track-3-end];
+                align-items: stretch;
+            }
+
+            .track-slot {
+                grid-row: tracks;
+                display: block;
+                position: sticky;
+                top: 0;
+                z-index: 20;
+                margin: 0;
+                padding: 0.85rem 0.7rem;
+                border: 1px solid #3e4956;
+                border-radius: 10px;
+                background: linear-gradient(160deg, #233142 0%, #1a2734 100%);
+                color: #d9e2ec;
+                font-size: 0.94rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+            }
+
+            .time-slot {
+                grid-column: times;
+                margin: 0;
+                padding-top: 0.45rem;
+                text-align: right;
+                font-size: 0.84rem;
+                color: #88a2b8;
+                border-top: 1px dashed rgba(102, 130, 154, 0.5);
+                padding-right: 0.5rem;
+            }
+
+            .session {
+                margin: 0;
+                min-height: 84px;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .session {
+            padding: 0.9rem;
+        }
+    }
+</style>
