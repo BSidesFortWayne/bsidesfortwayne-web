@@ -47,14 +47,14 @@ const getTrackLabel = (session: typeof sessions[number]) => {
     const endIndex = trackOrder.get(session.trackEnd) ?? startIndex;
 
     if (startIndex === 0 && endIndex === tracks.length - 1) {
-        return 'All Tracks';
+        return 'International Ballroom';
     }
 
     if (startIndex === endIndex) {
         return tracks[startIndex].name;
     }
 
-    return `${tracks[startIndex].name} + ${tracks[endIndex].name}`;
+    return `${tracks[startIndex].name}`;
 };
 
 const gridPlacement = (session: typeof sessions[number]) => {
