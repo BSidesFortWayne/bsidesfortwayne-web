@@ -83,7 +83,7 @@ const gridPlacement = (session: typeof sessions[number]) => {
                                 >
                                     <h4 class="session-title">{session.title}</h4>
                                     <p class="session-meta">{formatTime(session.start)} - {formatTime(session.end)}</p>
-                                    <p class="session-speaker">{session.speaker}</p>
+                                    <p class="session-speaker"><a href='/speakers'>{session.speaker}</a></p>
                                     <p class="session-track-label">{getTrackLabel(session)}</p>
                                     {session.description && (
                                         <div class="session-tooltip">{session.description}</div>
@@ -116,7 +116,7 @@ const gridPlacement = (session: typeof sessions[number]) => {
                     >
                         <h4 class="session-title">{session.title}</h4>
                         <p class="session-meta">{formatTime(session.start)} - {formatTime(session.end)}</p>
-                        <p class="session-speaker">{session.speaker}</p>
+                        <p class="session-speaker"><a href='/speakers'>{session.speaker}</a></p>
                         {session.description && (
                             <div class="session-tooltip">{session.description}</div>
                         )}

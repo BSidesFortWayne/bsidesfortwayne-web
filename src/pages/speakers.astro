@@ -10,8 +10,8 @@ import { speakers } from '../data/speakers2026.astro';
         <h1>Speakers</h1>
         <div class="speakers-grid">
             {speakers.map((speaker) => (
-                <div class="speaker-card">
-                    <img src={speaker.photo} alt={speaker.name} />
+                <div class="speaker-card" id="{speaker.talkId}">
+                    <img src={speaker.photo} alt={speaker.name} onerror="this.src='/logos/logo.png'; this.onerror=null;" />
                     <h2>{speaker.name}</h2>
                     <p>{speaker.bio}</p>
                     <a href={`/schedule#${speaker.talkId}`}>View Talk Schedule</a>
@@ -39,9 +39,9 @@ import { speakers } from '../data/speakers2026.astro';
 
     .speaker-card img {
         width: 100%;
-        height: 250px;
+        
         object-fit: cover;
-        border-radius: 8px;
+        border-radius: 1px;
         margin-bottom: 1rem;
     }
 
