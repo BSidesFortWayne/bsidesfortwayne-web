@@ -1,24 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-interface Speaker {
-    id: string;
-    name: string;
-    image: string;
-    description: string;
-    talkId: string;
-}
-
-const speakers: Speaker[] = [
-    {
-        id: '1',
-        name: 'Speaker Name',
-        image: '/images/speaker-1.jpg',
-        description: 'Brief description of the speaker and their expertise.',
-        talkId: 'talk-1',
-    },
-    // Add more speakers here
-];
+import type { Speaker } from '../data/speakers2026.astro';
+import { speakers } from '../data/speakers2026.astro';
 ---
 
 <Layout title="Speakers">
@@ -26,10 +10,10 @@ const speakers: Speaker[] = [
         <h1>Speakers</h1>
         <div class="speakers-grid">
             {speakers.map((speaker) => (
-                <div class="speaker-card">
-                    <img src={speaker.image} alt={speaker.name} />
+                <div class="speaker-card" id="{speaker.talkId}">
+                    <img src={speaker.photo} alt={speaker.name} onerror="this.src='/logos/logo.png'; this.onerror=null;" />
                     <h2>{speaker.name}</h2>
-                    <p>{speaker.description}</p>
+                    <p>{speaker.bio}</p>
                     <a href={`/schedule#${speaker.talkId}`}>View Talk Schedule</a>
                 </div>
             ))}
@@ -55,9 +39,9 @@ const speakers: Speaker[] = [
 
     .speaker-card img {
         width: 100%;
-        height: 250px;
+        
         object-fit: cover;
-        border-radius: 8px;
+        border-radius: 1px;
         margin-bottom: 1rem;
     }
 
