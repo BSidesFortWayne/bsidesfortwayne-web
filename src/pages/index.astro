@@ -1,20 +1,20 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-import Sponsors from '../components/Sponsors.astro';
 
 ---
 
-<Layout title="BSides Fort Wayne 2026">
+<Layout title="BSides Fort Wayne">
 	<div class="content">
 		<main>
 			<Welcome />
 		</main>
+        <!---
 		<aside class="sponsors-column">
 			<div id="sponsors" class="sponsors-content">
 				<Sponsors />
 			</div>
-		</aside>
+		</aside>--->
 	</div>
 
 	<style>
@@ -56,7 +56,7 @@ import Sponsors from '../components/Sponsors.astro';
 	</style>
 </Layout>
 
-<script>
+<!---<script>
     import CryptoJS from 'crypto-js'
     var key = CryptoJS.enc.Utf8.parse("Look For Me on social media");
     var iv = CryptoJS.enc.Utf8.parse("c1dfc13d545bd741");
@@ -65,4 +65,4 @@ import Sponsors from '../components/Sponsors.astro';
     console.log("Encrypted Flags loaded");
     console.log("Free Ticket: e808cbc5e0ca3690e026f2c4b4d644af9a2179f75bfd6038626d37563e75d2f4");
     console.log("CTF Flag: 7f88bbb1cc06c051d033f187bae903dab164be119413fef0e34a2c8107f82f06");  
-</script>
+</script>--->
