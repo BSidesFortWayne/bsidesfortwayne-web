@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Speakers">
+    <main>
+        <h1>Speakers</h1>
+        <div class="speakers-grid">
+                <div class="speaker-card" >
+                    <h2>Corey Ball</h2>
+                    <p>Corey Ball is the author of Hacking APIs and Head of Offensive Security at APIsec, where he leads strategy for APIsec University and the security test categories behind the APIsec platform. APIsec University is an expert-led security education platform training 150,000+ students focused on appsec. He also founded hAPI Labs, an offensive security consultancy focused on breaking APIs, agentic systems, cloud, and the networks that connect them.
+						<br />
+						He has over fifteen years in IT and cybersecurity across aerospace, agribusiness, energy, financial technology, government services, and healthcare, with more than a thousand penetration tests behind him.
+                    </p>
+                    <img src=/speakers/2026/corey_ball.png alt="Picture Of Corey Ball" onerror="this.src='/logos/logo.png'; this.onerror=null;" />
+                    
+                </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    .speakers-grid {
+        gap: 2rem;
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center; /* Horizontally centers children */
+        align-items: center;
+    }
+
+    .speaker-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        padding: 1.5rem;
+        text-align: center;
+        width: 50%
+    }
+
+    .speaker-card img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 1px;
+        margin-bottom: 1rem;
+    }
+
+    .speaker-card h2 {
+        margin: 1rem 0 0.5rem;
+    }
+
+    .speaker-card a {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background-color: #0969da;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    .speaker-card a:hover {
+        background-color: #0860ca;
+    }
+</style>
